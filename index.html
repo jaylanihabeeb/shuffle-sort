@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shuffle & Sort Cards</title>
+    <style>
+        body {
+            background: #EFEFEF;
+            font-family: calibri;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .card-wrapper {
+            display: flex;
+        }
+        #cards {
+            max-width: 600px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            height: 100px;
+            width: 185px;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            font-size: 50px;
+        }
+
+        .card-1,
+        .card-8 {
+            background-color: #6F98A8;
+        }
+
+        .card-2,
+        .card-4 {
+            background-color: #2B8EAD;
+        }
+
+        .card-3,
+        .card-5,
+        .card-9 {
+            background-color: #2F454E;
+        }
+
+        .card-6,
+        .card-7 {
+            background-color: #BFBFBF;
+        }
+
+        .buttons-wrapper {
+            display: flex;
+            flex-direction: column;
+        }
+        #shuffle,
+        #sort {
+            height: 40px;
+            width: 120px;
+            background-color: #72C3DC;
+            margin-bottom: 20px;
+            color: #FFFFFF;
+            border: none;
+            text-transform: uppercase;
+            border-radius: 5px;
+            box-shadow: 0px 4px 1px #2b8ead;
+            cursor: pointer;
+        }
+        footer {
+            font-style: italic;
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            body {
+                background-color: #FFFFFF;
+            }
+            header {
+                height: 40px;
+                width: 100%;
+                background-color: #333333;
+                color: #fff;
+                padding: 5px;
+                box-sizing: border-box;
+                font-size: 22px;
+            }    
+            .card-wrapper {
+                flex-direction: column-reverse;
+            }     
+            .buttons-wrapper {
+                flex-direction: row;
+                justify-content: center;
+            }   
+            #shuffle {
+                margin-right: 10px;
+            }
+            .card {
+                background-color: #EFEFEF;
+                height: 40px;
+                width: 100%;
+                color: #000;
+                font-size: 14px;
+                margin-bottom: 10px;
+                padding: 13px;
+            }
+            .card-1,
+            .card-8 {
+                border-left: 10px solid #6F98A8;
+            }
+
+            .card-2,
+            .card-4 {
+                border-left: 10px solid #2B8EAD;
+            }
+
+            .card-3,
+            .card-5,
+            .card-9 {
+                border-left: 10px solid #2F454E;
+            }
+
+            .card-6,
+            .card-7 {
+                border-left: 10px solid #BFBFBF;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>Shuffle and Sort</header>
+    <div class="card-wrapper">
+        <div id="cards"></div>
+        <div class="buttons-wrapper">
+            <button id="shuffle">Shuffle</button>
+            <button id="sort">Sort</button>
+        </div>
+    </div>    
+    <footer>
+        Shuffle and sort by Jaylani
+    </footer>    
+    <script>
+        function createItem(name) {
+            let div = document.createElement('div');
+            div.textContent = name;
+            div.className = "card card-" + name;
+            return div;
+        }
+
+        const wrapper = document.querySelector('#cards');
+        let array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        for (let i = 0; i < array.length; i++) {
+            wrapper.appendChild(createItem(array[i]));
+        }
+
+        document.getElementById("shuffle").addEventListener("click", function () {
+            document.querySelector('#cards').innerHTML = "";
+            array.sort(() => .5 - Math.random());
+            for (let i = 0; i < array.length; i++) {
+                wrapper.appendChild(createItem(array[i]));
+            }
+        });
+
+        document.getElementById("sort").addEventListener("click", function () {
+            document.querySelector('#cards').innerHTML = "";
+            array.sort((a, b) => a - b);
+            for (let i = 0; i < array.length; i++) {
+                wrapper.appendChild(createItem(array[i]));
+            }
+        });
+    </script>
+
+</body>
+
+</html>
